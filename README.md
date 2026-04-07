@@ -15,18 +15,18 @@ Brings structured business consulting into Claude (Cowork mode). Guides business
 - Procurement decisions with data-driven rules
 - Business health scoring via the Golden Equilibrium Scoring system
 
----
-
 ## Skills Included
-
-| Skill | Description |
+ 
+> **New to the plugin? Start by saying:** *"Hi, I'm a business owner and want to assess my business."* — Claude will route you automatically.
+ 
+| Skill | When to Use |
 |---|---|
-| `welcome-industry-selection` | Onboarding & industry routing |
-| `retail-wholesale-business-play` | Retail & Wholesale consulting flow |
-| `wellness-hospitality-business-play` | Wellness & Hospitality consulting flow |
-| `golden-equilibrium-scoring` | Business health scoring system |
-| `power-ladder-promotion` | GTM & promotion content |
-
+| `welcome-industry-selection` | **Start here.** Onboarding & industry routing |
+| `retail-wholesale-business-play` | Full consulting flow for retail & wholesale — inventory, procurement, cash flow. Generates Excel + HTML report |
+| `golden-equilibrium-scoring` | Just need a quick OS/FRS score without the full report |
+| `wellness-hospitality-business-play` | Spa, hotel, wellness, or hospitality businesses *(coming soon)* |
+| `power-ladder-promotion` | Questions about the full product, pricing, or Snowflake integration |
+ 
 ---
 
 ## Installation
