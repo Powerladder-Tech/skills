@@ -33,42 +33,56 @@ Brings structured business consulting into Claude (Cowork mode). Guides business
 
 ```mermaid
 flowchart LR
-    Start([CEO starts session]) --> Welcome[welcome-industry-selection<br/>Gateway Keeper]
-    Welcome --> Industry{Select Industry}
+    Start([CEO starts session]) --> Welcome[Gateway Keeper<br/>welcome-industry-selection]
+    Welcome --> Industry{Industry?}
 
-    Industry -->|Retail & Wholesale| Camel[retail-wholesale-business-play<br/>The Smart Camel]
-    Industry -->|Wellness & Hospitality| Wellness[wellness-hospitality-business-play<br/>Coming Soon]
-    Industry -->|Other| Contact[Route to Power Ladder<br/>custom consulting]
+    Industry -->|Retail & Wholesale| Camel[The Smart Camel<br/>retail-wholesale-business-play]
+    Industry -->|Wellness & Hospitality| Wellness[Coming Soon]
+    Industry -->|Other| Contact[Custom Consulting]
 
-    Camel --> R1[Round 1 — Business Context<br/>Model, Challenge, 90-day Goal]
-    R1 --> R2[Round 2 — Financial Health<br/>Cash+AR, Liabilities, Inventory+LTD]
-    R2 --> R3[Round 3 — Inventory & Operations<br/>Demand, Margin, Supplier, Dead Stock]
+    Camel --> Interview
 
-    R3 --> Score[golden-equilibrium-scoring<br/>Calculate OS, FRS, Quick Ratio]
-    Score --> Assign{Assign Business Play}
+    subgraph Interview[Diagnostic Interview · 3 Rounds]
+        direction TB
+        R1[Round 1<br/>Business Context]
+        R2[Round 2<br/>Financial Health → FRS]
+        R3[Round 3<br/>Inventory & Ops → OS]
+        R1 --> R2 --> R3
+    end
 
-    Assign -->|Total > 60 & balanced| Ambition[Calculated Ambition<br/>Golden Equilibrium]
-    Assign -->|OS > FRS, gap > 20| Unicorn[Unicorn Mistake Step<br/>Build Cash Bridge]
-    Assign -->|Total > 80| Ski[Handle the Ski<br/>High Velocity]
-    Assign -->|Insufficient data| Dino[Dinosaur Hoping for Luck<br/>Connect live data]
+    Interview --> Score[Golden Equilibrium Scoring<br/>OS · FRS · Quick Ratio]
+    Score --> Plays
 
-    Ambition --> Deliver[AlphaEar Report Generation]
-    Unicorn --> Deliver
-    Ski --> Deliver
-    Dino --> Deliver
+    subgraph Plays[Business Play Assignment]
+        direction TB
+        Ambition[🐪 Calculated Ambition<br/>Total &gt; 60 · balanced]
+        Unicorn[🦄 Unicorn Mistake Step<br/>OS − FRS &gt; 20]
+        Ski[🎿 Handle the Ski<br/>Total &gt; 80 · stacks]
+        Dino[🦕 Dinosaur Hoping for Luck<br/>insufficient data]
+    end
 
-    Deliver --> Cluster[Step A — Cluster signals<br/>into 3–5 themes]
-    Cluster --> Write[Step B — Write theme sections<br/>with json-chart viz]
-    Write --> Assemble[Step C — Assemble final report]
+    Plays --> Deliver
 
-    Assemble --> Out1[Output 1 — Filled Excel<br/>Balance Sheet + Inventory]
-    Assemble --> Out2[Output 2 — HTML Report<br/>Scores, Themes, Actions]
+    subgraph Deliver[AlphaEar Report Generation]
+        direction TB
+        Cluster[Step A<br/>Cluster signals into 3–5 themes]
+        Write[Step B<br/>Write theme sections + json-chart]
+        Assemble[Step C<br/>Assemble final report]
+        Cluster --> Write --> Assemble
+    end
 
-    Out1 --> CTA[power-ladder-promotion<br/>Snowflake integration · Consulting]
-    Out2 --> CTA
+    Deliver --> Outputs
+
+    subgraph Outputs[Deliverables]
+        direction TB
+        Out1[Balance Sheet .xlsx]
+        Out2[Inventory Analysis .xlsx]
+        Out3[Strategic Report .html]
+    end
+
+    Outputs --> CTA[Power Ladder Promotion<br/>Snowflake · Consulting]
     Wellness --> CTA
     Contact --> CTA
-
     CTA --> End([Strategic next steps])
 
     classDef gateway fill:#d4a852,stroke:#d4a852,color:#0b0d12
@@ -80,9 +94,9 @@ flowchart LR
 
     class Welcome gateway
     class Camel,Wellness consultant
-    class Score,Cluster,Write,Assemble scoring
+    class Score,R1,R2,R3,Cluster,Write,Assemble scoring
     class Ambition,Unicorn,Ski,Dino play
-    class Out1,Out2 output
+    class Out1,Out2,Out3 output
     class CTA cta
 ```
 
